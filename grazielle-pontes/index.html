@@ -1,1 +1,1000 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Checkpoint — Grazielle Pontes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 
+<style>
+  :root {
+    --brown-dark:   #1a1208;
+    --brown-mid:    #2e1f0a;
+    --brown-warm:   #3d2b10;
+    --gold:         #c9a84c;
+    --gold-light:   #e2c97e;
+    --gold-pale:    #f5ead0;
+    --cream:        #fdf8ef;
+    --cream-mid:    #f7f0e2;
+    --sand:         #e8d9bc;
+    --text-dark:    #1a1208;
+    --text-mid:     #4a3820;
+    --text-light:   #8a7055;
+    --white:        #ffffff;
+    --radius:       6px;
+    --radius-lg:    12px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text-dark);
+    font-size: 14px;
+    line-height: 1.65;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+  }
+
+  h2 {
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--brown-dark);
+    margin-bottom: 18px;
+    line-height: 1.2;
+  }
+
+  h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--brown-dark);
+    margin-bottom: 10px;
+  }
+
+  h4 {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-mid);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+  }
+
+  p {
+    color: var(--text-mid);
+    font-size: 13.5px;
+    line-height: 1.7;
+    margin-bottom: 8px;
+  }
+
+  p:last-child { margin-bottom: 0; }
+
+  .page {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 0 60px;
+  }
+
+  .header {
+    background: var(--brown-dark);
+    padding: 40px 48px 36px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 280px; height: 280px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,168,76,0.12) 0%, transparent 70%);
+  }
+
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    opacity: 0.5;
+  }
+
+  .header-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 24px;
+  }
+
+  .header-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.8;
+    margin-bottom: 10px;
+  }
+
+  .header-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 38px;
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+  }
+
+  .header-name strong {
+    font-weight: 600;
+    color: var(--gold-light);
+  }
+
+  .header-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+  }
+
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .pill-gold {
+    background: rgba(201,168,76,0.18);
+    color: var(--gold-light);
+    border: 1px solid rgba(201,168,76,0.3);
+  }
+
+  .pill-outline {
+    background: transparent;
+    color: rgba(255,255,255,0.5);
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+
+  .pill-fase {
+    background: rgba(201,168,76,0.08);
+    color: var(--gold);
+    border: 1px solid rgba(201,168,76,0.2);
+    font-size: 10.5px;
+  }
+
+  .header-subtitle {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 0.03em;
+    font-weight: 300;
+  }
+
+  .section {
+    padding: 40px 48px 0;
+  }
+
+  .section-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+    display: block;
+  }
+
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, var(--sand), transparent);
+    margin: 32px 48px 0;
+    opacity: 0.7;
+  }
+
+  .spotlight {
+    background: var(--brown-dark);
+    border-left: 3px solid var(--gold);
+    padding: 24px 28px;
+    border-radius: var(--radius);
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .spotlight::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 120px; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(201,168,76,0.04));
+  }
+
+  .spotlight h3 {
+    color: var(--gold-light);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+
+  .spotlight p {
+    color: rgba(255,255,255,0.65);
+    font-size: 13px;
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  .card {
+    background: var(--white);
+    border: 1px solid var(--sand);
+    border-radius: var(--radius-lg);
+    padding: 22px 24px;
+  }
+
+  .card-full {
+    background: var(--white);
+    border: 1px solid var(--sand);
+    border-radius: var(--radius-lg);
+    padding: 22px 24px;
+    margin-bottom: 16px;
+  }
+
+  .card-gold {
+    background: linear-gradient(135deg, var(--brown-dark) 0%, var(--brown-warm) 100%);
+    border: 1px solid rgba(201,168,76,0.25);
+    border-radius: var(--radius-lg);
+    padding: 22px 24px;
+  }
+
+  .card-gold h3 {
+    color: var(--gold-light);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+  }
+
+  .card-gold p {
+    color: rgba(255,255,255,0.6);
+    font-size: 13px;
+  }
+
+  .card-cream {
+    background: var(--cream-mid);
+    border: 1px solid var(--sand);
+    border-radius: var(--radius-lg);
+    padding: 22px 24px;
+  }
+
+  .table-wrap {
+    overflow-x: auto;
+    margin-bottom: 16px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+
+  thead tr {
+    background: var(--brown-dark);
+  }
+
+  thead th {
+    color: var(--gold-light);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 12px 16px;
+    text-align: left;
+  }
+
+  tbody tr {
+    border-bottom: 1px solid var(--sand);
+  }
+
+  tbody tr:last-child { border-bottom: none; }
+
+  tbody tr:nth-child(even) { background: var(--cream-mid); }
+
+  tbody td {
+    padding: 11px 16px;
+    color: var(--text-mid);
+    vertical-align: top;
+  }
+
+  tbody td:first-child {
+    font-weight: 500;
+    color: var(--text-dark);
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 500;
+  }
+
+  .badge-ok {
+    background: #e8f5e9;
+    color: #2e7d32;
+    border: 1px solid #a5d6a7;
+  }
+
+  .badge-ajuste {
+    background: #fff8e1;
+    color: #f57f17;
+    border: 1px solid #ffe082;
+  }
+
+  .badge-pendente {
+    background: #fce4ec;
+    color: #c62828;
+    border: 1px solid #ef9a9a;
+  }
+
+  .badge-novo {
+    background: rgba(201,168,76,0.12);
+    color: var(--brown-warm);
+    border: 1px solid rgba(201,168,76,0.3);
+  }
+
+  .funnel {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: 16px;
+  }
+
+  .funnel-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+  }
+
+  .funnel-line {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .funnel-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--gold);
+    border: 2px solid var(--gold-light);
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+
+  .funnel-connector {
+    width: 2px;
+    flex: 1;
+    min-height: 20px;
+    background: linear-gradient(180deg, var(--gold), var(--sand));
+    opacity: 0.4;
+  }
+
+  .funnel-content {
+    background: var(--white);
+    border: 1px solid var(--sand);
+    border-radius: var(--radius);
+    padding: 14px 18px;
+    margin-left: 14px;
+    margin-bottom: 8px;
+    flex: 1;
+  }
+
+  .funnel-content h4 {
+    font-size: 12px;
+    margin-bottom: 4px;
+    color: var(--brown-dark);
+  }
+
+  .funnel-content p {
+    font-size: 12.5px;
+    margin: 0;
+  }
+
+  .checklist {
+    list-style: none;
+    margin-bottom: 16px;
+  }
+
+  .checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 11px 16px;
+    border-bottom: 1px solid var(--cream-mid);
+    font-size: 13px;
+    color: var(--text-mid);
+    line-height: 1.55;
+  }
+
+  .checklist li:last-child { border-bottom: none; }
+
+  .check-box {
+    width: 18px;
+    height: 18px;
+    border: 1.5px solid var(--sand);
+    border-radius: 4px;
+    flex-shrink: 0;
+    margin-top: 1px;
+    background: var(--white);
+  }
+
+  .check-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--gold);
+    min-width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: rgba(201,168,76,0.1);
+    border: 1px solid rgba(201,168,76,0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .checklist-owner {
+    font-size: 10.5px;
+    color: var(--text-light);
+    display: block;
+    margin-top: 2px;
+    font-style: italic;
+  }
+
+  .tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  .tag {
+    padding: 4px 12px;
+    border-radius: 14px;
+    font-size: 12px;
+    font-weight: 500;
+    background: var(--cream-mid);
+    color: var(--text-mid);
+    border: 1px solid var(--sand);
+  }
+
+  .tag-gold {
+    background: rgba(201,168,76,0.1);
+    color: var(--brown-warm);
+    border: 1px solid rgba(201,168,76,0.3);
+  }
+
+  .quote-block {
+    border-left: 2px solid var(--gold);
+    padding: 12px 20px;
+    background: var(--cream-mid);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    margin-bottom: 14px;
+  }
+
+  .quote-block p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-style: italic;
+    color: var(--brown-dark);
+    font-weight: 400;
+    line-height: 1.5;
+  }
+
+  .two-col-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 24px;
+    margin-bottom: 12px;
+  }
+
+  .two-col-list li {
+    list-style: none;
+    font-size: 13px;
+    color: var(--text-mid);
+    padding-left: 14px;
+    position: relative;
+  }
+
+  .two-col-list li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    font-size: 11px;
+  }
+
+  .footer {
+    margin-top: 56px;
+    border-top: 1px solid var(--sand);
+    padding: 24px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .footer-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--brown-dark);
+    letter-spacing: 0.05em;
+  }
+
+  .footer-brand span { color: var(--gold); }
+
+  .footer-info {
+    font-size: 11px;
+    color: var(--text-light);
+    text-align: right;
+    line-height: 1.6;
+  }
+
+  .footer-info strong {
+    color: var(--text-mid);
+    font-weight: 500;
+  }
+
+  @media print {
+    body { background: white; font-size: 12px; }
+    .page { padding-bottom: 20px; }
+    .header, .spotlight, .card-gold, thead tr { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .section { padding: 28px 40px 0; }
+    .divider { margin: 22px 40px 0; }
+    .footer { padding: 18px 40px; }
+    @page { margin: 14mm 12mm; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-top">
+      <div>
+        <div class="header-brand">High Level · Aceleradora de Negócios</div>
+        <div class="header-name">Checkpoint<br/><strong>Grazielle Pontes</strong></div>
+      </div>
+      <div class="header-meta">
+        <span class="pill pill-gold">✦ Checkpoint</span>
+        <span class="pill pill-outline">13 de Maio de 2026</span>
+        <span class="pill pill-fase">Fase: Estruturação</span>
+      </div>
+    </div>
+    <div class="header-subtitle">Consultoria Comercial · Comercial Previsível &nbsp;·&nbsp; Acompanhamento individual com Eduarda Vasconcelos</div>
+  </header>
+
+
+  <!-- 01 · MOMENTO ATUAL -->
+  <div class="section">
+    <span class="section-label">01 · Leitura do Momento</span>
+    <h2>Onde você está agora</h2>
+
+    <div class="spotlight">
+      <h3>Minha leitura deste checkpoint</h3>
+      <p>Grazielle, você está saindo da fase de estruturação com o essencial no lugar: produto nomeado, método definido, público refinado e oferta precificada. Agora o movimento é parar de improvisar e instalar de vez a operação comercial que você tanto sabe construir: processos documentados, formulário funcionando, próximo cliente guiado pelo modelo novo. Tudo que precisava ser decidido foi decidido. O que falta agora é você executar com consistência.</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <h4>O que você já construiu</h4>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:7px;">
+          <li style="font-size:13px;color:var(--text-mid);padding-left:14px;position:relative;"><span style="position:absolute;left:0;color:var(--gold);">•</span> Produto nomeado: <strong>Comercial Previsível</strong></li>
+          <li style="font-size:13px;color:var(--text-mid);padding-left:14px;position:relative;"><span style="position:absolute;left:0;color:var(--gold);">•</span> Método <strong>PME</strong> (Processos, Métricas, Equipe) definido</li>
+          <li style="font-size:13px;color:var(--text-mid);padding-left:14px;position:relative;"><span style="position:absolute;left:0;color:var(--gold);">•</span> Público refinado: negócios digitais e construtoras acima de R$10k/mês</li>
+          <li style="font-size:13px;color:var(--text-mid);padding-left:14px;position:relative;"><span style="position:absolute;left:0;color:var(--gold);">•</span> Oferta: R$15.000 tabela / R$12.000 protagonista (8x R$2.000)</li>
+          <li style="font-size:13px;color:var(--text-mid);padding-left:14px;position:relative;"><span style="position:absolute;left:0;color:var(--gold);">•</span> Bio e frase de impacto revisadas</li>
+          <li style="font-size:13px;color:var(--text-mid);padding-left:14px;position:relative;"><span style="position:absolute;left:0;color:var(--gold);">•</span> Jornada do cliente e entregáveis mapeados</li>
+        </ul>
+      </div>
+      <div class="card-cream">
+        <h4>Sua fase atual</h4>
+        <p style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:var(--brown-dark);margin-bottom:6px;">Estruturação</p>
+        <p>Sua base estratégica está consolidada. O próximo passo é documentar tudo que decidimos juntas, ativar o formulário corrigido e iniciar a operação com o modelo novo, sem esperar a perfeição para começar.</p>
+        <div class="tag-list" style="margin-top:12px;">
+          <span class="tag tag-gold">Documentação</span>
+          <span class="tag tag-gold">Qualificação</span>
+          <span class="tag tag-gold">Operação</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+
+  <!-- 02 · ANÁLISE DO ENCONTRO -->
+  <div class="section">
+    <span class="section-label">02 · Análise do Encontro</span>
+    <h2>O que analisamos juntas neste checkpoint</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Ponto analisado</th>
+            <th>Situação atual</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Produto e Método (PME)</td>
+            <td>Seu Comercial Previsível está estruturado com método claro: Processos, Métricas e Equipe. Produto diferenciado e com nome forte. Isso é seu.</td>
+            <td><span class="badge badge-ok">✓ Ok</span></td>
+          </tr>
+          <tr>
+            <td>Público-alvo e segmentação</td>
+            <td>Foco bem definido: negócios digitais (mentorias, consultorias) e construtoras. Clínicas ficam fora; você mesma identificou que a demanda operacional não compensa. Filtro de maturidade aplicado: acima de R$10k/mês.</td>
+            <td><span class="badge badge-ok">✓ Ok</span></td>
+          </tr>
+          <tr>
+            <td>Posicionamento e Bio do Instagram</td>
+            <td>Sua frase de impacto está definida e forte. Mas o link da Aceleradora GP ainda está na bio, o que cria ruído e divide a atenção de quem chega até você. Precisa sair.</td>
+            <td><span class="badge badge-ajuste">⚡ Ajuste</span></td>
+          </tr>
+          <tr>
+            <td>Formulário de qualificação</td>
+            <td>O formulário existe, mas começa pelo lado errado: nome, telefone e e-mail primeiro afasta o lead antes de ele se engajar. A inversão (interesse e faturamento primeiro, contato depois) e a pergunta de filtro de investimento ainda precisam ser implementadas.</td>
+            <td><span class="badge badge-pendente">! Pendente</span></td>
+          </tr>
+          <tr>
+            <td>Estratégia de conteúdo</td>
+            <td>Definimos o caminho: Reels curtos de teste para alcance, conteúdo técnico-comercial como base. Bastidores e mentalidade com moderação: no máximo 1 a cada 10 posts. Agora é colocar em prática.</td>
+            <td><span class="badge badge-ajuste">⚡ Ajuste</span></td>
+          </tr>
+          <tr>
+            <td>Documentação do produto e processos</td>
+            <td>Tudo ainda está na sua cabeça. Produto, método, jornada do cliente e playbooks: nada disso está formalizado ainda. Esse é o gap mais crítico neste momento, e a IA pode te ajudar a fechar isso rápido.</td>
+            <td><span class="badge badge-pendente">! Pendente</span></td>
+          </tr>
+          <tr>
+            <td>Fluxo de onboarding e pré-onboarding</td>
+            <td>Estruturamos juntas: formulário pré-onboarding → reunião de diagnóstico (2h) → mapeamento de gargalos → definição de metas. O fluxo está claro; o formulário pré-onboarding ainda precisa ser criado e enviado.</td>
+            <td><span class="badge badge-novo">★ Novo</span></td>
+          </tr>
+          <tr>
+            <td>Estrutura de gestão (ongoing)</td>
+            <td>Modelo de 2 encontros mensais definido: você conversa com o dono sobre estratégia e KPIs, e depois vai para o time com contexto. Essa ordem é inegociável: dono sempre antes da equipe.</td>
+            <td><span class="badge badge-ok">✓ Ok</span></td>
+          </tr>
+          <tr>
+            <td>Entregáveis e dashboard de métricas</td>
+            <td>Sua lista de entregáveis está mapeada. Para o dashboard, a ideia é usar as planilhas do cliente e hospedar via Netlify ou GitHub, assim você preserva o histórico e não fica refém de uma ferramenta que pode sair do ar.</td>
+            <td><span class="badge badge-novo">★ Novo</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+
+  <!-- 03 · PONTOS FORTES -->
+  <div class="section">
+    <span class="section-label">03 · Pontos Fortes</span>
+    <h2>O que está funcionando: quero que você mantenha e amplifique</h2>
+
+    <div class="grid-2">
+      <div class="card-gold">
+        <h3>Seu método PME é um diferencial real</h3>
+        <p>Processos, Métricas e Equipe: isso é claro, ensinável e diferencia você de qualquer consultoria genérica de vendas. Quero que você pare de tratar o PME como detalhe interno e comece a colocá-lo no centro da sua comunicação, do seu conteúdo e do seu argumento de venda.</p>
+      </div>
+      <div class="card-gold">
+        <h3>Você tem prova social concreta</h3>
+        <p>A venda de 6 lotes depois que você aplicou scripts comerciais enxutos e treinou a equipe da construtora é um case poderoso. Use isso. Esse resultado precisa estar no seu posicionamento e na sua captação, especialmente para atrair mais clientes do mesmo segmento.</p>
+      </div>
+    </div>
+
+    <div class="card-full">
+      <h4>Seus ativos consolidados</h4>
+      <div class="tag-list">
+        <span class="tag">+6 anos de experiência</span>
+        <span class="tag">Produto nomeado e precificado</span>
+        <span class="tag">Segmento validado</span>
+        <span class="tag">Estrutura de entregáveis mapeada</span>
+        <span class="tag">Jornada do cliente definida</span>
+        <span class="tag tag-gold">Case real com construtora</span>
+      </div>
+      <p>Você tem tudo que precisa para vender: autoridade comprovada, produto estruturado e resultado validado em cliente real. O que vai acelerar seus resultados agora é transformar esse capital em documentação, conteúdo e processos que funcionem sem depender só de você.</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+
+  <!-- 04 · AJUSTES -->
+  <div class="section">
+    <span class="section-label">04 · Ajustes Necessários</span>
+    <h2>O que preciso que você corrija ou refine</h2>
+
+    <div class="funnel">
+
+      <div class="funnel-step">
+        <div class="funnel-line">
+          <div class="funnel-dot"></div>
+          <div class="funnel-connector"></div>
+        </div>
+        <div class="funnel-content">
+          <h4>Ajuste 1 · Bio: tire o link da Aceleradora GP agora</h4>
+          <p>Esse link está dividindo o posicionamento de quem chega até você. A pessoa entra na sua bio e não sabe se você é consultora de comercial ou parte de uma aceleradora. Sua bio precisa ter um único caminho: o diagnóstico com você e o Comercial Previsível.</p>
+        </div>
+      </div>
+
+      <div class="funnel-step">
+        <div class="funnel-line">
+          <div class="funnel-dot"></div>
+          <div class="funnel-connector"></div>
+        </div>
+        <div class="funnel-content">
+          <h4>Ajuste 2 · Formulário: inverta a lógica e filtre por investimento</h4>
+          <p>Seu formulário atual começa pedindo nome, telefone e e-mail, o que aumenta a barreira antes do lead se engajar. Quero que você inverta: começa pelas perguntas sobre faturamento e metas, e só pede os dados de contato no final. Adiciona também uma pergunta com faixas de preço para filtrar quem tem capacidade real de investir antes mesmo da call.</p>
+        </div>
+      </div>
+
+      <div class="funnel-step">
+        <div class="funnel-line">
+          <div class="funnel-dot"></div>
+          <div class="funnel-connector"></div>
+        </div>
+        <div class="funnel-content">
+          <h4>Ajuste 3 · Conteúdo: menos bastidores, mais técnica comercial</h4>
+          <p>Bastidores e mentalidade têm espaço, mas com moderação: no máximo 1 a cada 10 posts. O que constrói sua autoridade e atrai o cliente certo é o conteúdo técnico-comercial. Use Reels curtos e contextualizados com trends para alcançar novos perfis, sempre trazendo para o seu nicho.</p>
+        </div>
+      </div>
+
+      <div class="funnel-step">
+        <div class="funnel-line">
+          <div class="funnel-dot"></div>
+          <div class="funnel-connector"></div>
+        </div>
+        <div class="funnel-content">
+          <h4>Ajuste 4 · Entrega: escreva para quem vai executar</h4>
+          <p>Os planos de ação que você entrega precisam ser na linguagem de quem vai colocar em prática. Um SDR ou Closer Júnior não precisa de estratégia rebuscada; precisa saber exatamente o que fazer. Adapta o tom ao perfil de cada cliente. Clareza na entrega é o que garante que seu trabalho seja executado de verdade.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+
+  <!-- 05 · DECISÕES -->
+  <div class="section">
+    <span class="section-label">05 · Decisões do Encontro</span>
+    <h2>O que decidimos juntas: não está mais em aberto</h2>
+
+    <div class="grid-2">
+      <div class="card">
+        <h4>Decisões estratégicas</h4>
+        <ul class="checklist" style="margin-bottom:0;">
+          <li>
+            <span class="check-number">D</span>
+            <span>Você atende negócios com faturamento mínimo de R$10.000/mês; quem está começando não é o seu cliente agora</span>
+          </li>
+          <li>
+            <span class="check-number">D</span>
+            <span>Clínicas ficam fora do seu escopo; você mesma percebeu que a demanda operacional desse segmento não compensa</span>
+          </li>
+          <li>
+            <span class="check-number">D</span>
+            <span>Preço de tabela R$15.000 / protagonista R$12.000 (8x R$2.000). Mantemos esse valor para garantir a sustentabilidade do seu trabalho</span>
+          </li>
+          <li>
+            <span class="check-number">D</span>
+            <span>Você começa com contrato de 3 meses e avalia extensão para 6 conforme o amadurecimento dos resultados, sem pressão desde o início</span>
+          </li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4>Decisões operacionais</h4>
+        <ul class="checklist" style="margin-bottom:0;">
+          <li>
+            <span class="check-number">D</span>
+            <span>Seus 2 encontros mensais: Gestão e Estratégia com o dono (análise de KPIs + direção dos próximos 15 dias) + Time e Operação com a equipe de vendas</span>
+          </li>
+          <li>
+            <span class="check-number">D</span>
+            <span>Reunião com o dono SEMPRE antes do encontro com a equipe, pois você precisa do contexto completo para orientar os vendedores com assertividade</span>
+          </li>
+          <li>
+            <span class="check-number">D</span>
+            <span>Formulário pré-onboarding obrigatório antes de qualquer reunião de diagnóstico. Você nunca chega em uma call no escuro</span>
+          </li>
+          <li>
+            <span class="check-number">D</span>
+            <span>Dashboard criado a partir das planilhas do cliente, hospedado via Netlify ou GitHub, assim você preserva o histórico e não fica refém de uma ferramenta</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="quote-block">
+      <p>"Você não precisa ter tudo perfeito para começar. O modelo vai amadurecer com cada cliente. O que importa agora é instalar o processo. E você já tem tudo para isso."</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+
+  <!-- 06 · PRIORIDADES -->
+  <div class="section">
+    <span class="section-label">06 · Prioridades Agora</span>
+    <h2>O que eu quero que você priorize agora</h2>
+
+    <div class="grid-2">
+      <div class="spotlight" style="margin-bottom:0;">
+        <h3>Prioridade #1 · Coloque para fora o que está na sua cabeça</h3>
+        <p>Tudo que decidimos ainda está só em você. Enquanto não estiver documentado (produto, método, jornada, perguntas de diagnóstico), o processo depende da sua memória e não vai escalar. Use o modo de voz do ChatGPT ou o Claude para falar, registrar e organizar no Notion. Esse é o movimento mais urgente desta semana.</p>
+      </div>
+      <div class="card" style="display:flex;flex-direction:column;gap:12px;">
+        <div>
+          <h4>Prioridade #2 · Coloque o formulário corrigido no ar</h4>
+          <p>Com a lógica inversa e o filtro de investimento, o formulário precisa estar funcionando antes de qualquer esforço de captação. Sem isso, você continua recebendo leads desqualificados.</p>
+        </div>
+        <div style="border-top:1px solid var(--sand);padding-top:12px;">
+          <h4>Prioridade #3 · Mande o pré-onboarding ao cliente atual</h4>
+          <p>Elabore e envie o formulário pré-onboarding agora. Quero que você chegue à reunião de diagnóstico com dados do time, histórico e plataformas já em mãos. Sem improvisar na hora.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+
+  <!-- 07 · CHECKLIST -->
+  <div class="section">
+    <span class="section-label">07 · Checklist de Execução</span>
+    <h2>Seus próximos passos: o que precisa sair essa semana</h2>
+
+    <div class="card-full">
+      <ul class="checklist">
+
+        <li>
+          <div class="check-box"></div>
+          <div>
+            <strong>Tire o link da Aceleradora GP da bio do Instagram</strong>
+            <span class="checklist-owner">Você &nbsp;·&nbsp; Prazo: Imediato. Faça hoje.</span>
+          </div>
+        </li>
+
+        <li>
+          <div class="check-box"></div>
+          <div>
+            <strong>Reestruture o formulário (Google Forms) com lógica inversa: interesse e faturamento primeiro, dados de contato no final</strong>
+            <span class="checklist-owner">Você &nbsp;·&nbsp; Prazo: Esta semana</span>
+          </div>
+        </li>
+
+        <li>
+          <div class="check-box"></div>
+          <div>
+            <strong>Adicione uma pergunta de qualificação de investimento com faixas de preço, para filtrar quem tem capacidade de contratar antes da call</strong>
+            <span class="checklist-owner">Você &nbsp;·&nbsp; Prazo: Esta semana</span>
+          </div>
+        </li>
+
+        <li>
+          <div class="check-box"></div>
+          <div>
+            <strong>Use o modo de voz do ChatGPT ou o Claude para falar e documentar seu produto, método PME, oferta e posicionamento. Organize no Notion</strong>
+            <span class="checklist-owner">Você &nbsp;·&nbsp; Prazo: Esta semana. Não deixa passar.</span>
+          </div>
+        </li>
+
+        <li>
+          <div class="check-box"></div>
+          <div>
+            <strong>Pague o serviço Cloud e ative os conectores para integrar a documentação direto no Notion</strong>
+            <span class="checklist-owner">Você &nbsp;·&nbsp; Prazo: Esta semana</span>
+          </div>
+        </li>
+
+        <li>
+          <div class="check-box"></div>
+          <div>
+            <strong>Estruture as perguntas da reunião de diagnóstico: gargalos, metas de call, agendamento e faturamento. Você precisa chegar preparada</strong>
+            <span class="checklist-owner">Você &nbsp;·&nbsp; Prazo: Antes de receber o próximo cliente</span>
+          </div>
+        </li>
+
+        <li>
+          <div class="check-box"></div>
+          <div>
+            <strong>Elabore o formulário pré-onboarding: tamanho do time, maturidade comercial, histórico de resultados, plataformas usadas</strong>
+            <span class="checklist-owner">Você &nbsp;·&nbsp; Prazo: Antes da próxima reunião de diagnóstico</span>
+          </div>
+        </li>
+
+        <li>
+          <div class="check-box"></div>
+          <div>
+            <strong>Selecione as perguntas principais e envie o formulário ao seu cliente atual, antes de entrar na call</strong>
+            <span class="checklist-owner">Você &nbsp;·&nbsp; Prazo: Antes da próxima reunião</span>
+          </div>
+        </li>
+
+        <li>
+          <div class="check-box"></div>
+          <div>
+            <strong>Peça a planilha comercial do cliente, ou o documento extraído da plataforma, se usarem CRM. Você precisa dos dados antes do onboarding</strong>
+            <span class="checklist-owner">Você &nbsp;·&nbsp; Prazo: Antes da reunião de onboarding</span>
+          </div>
+        </li>
+
+        <li>
+          <div class="check-box"></div>
+          <div>
+            <strong>Me manda os documentos do seu processo atual para eu revisar. Quero ver como seus materiais estão estruturados hoje</strong>
+            <span class="checklist-owner">Você &nbsp;·&nbsp; Prazo: Assim que tiver</span>
+          </div>
+        </li>
+
+        <li>
+          <div class="check-box"></div>
+          <div>
+            <strong>Monto e envio o documento de entregáveis finalizado para você</strong>
+            <span class="checklist-owner">Eduarda &nbsp;·&nbsp; Prazo: Até o final do dia do nosso encontro</span>
+          </div>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-brand">High <span>Level</span></div>
+    <div class="footer-info">
+      <strong>Eduarda Vasconcelos</strong><br/>
+      Aceleradora de Negócios &nbsp;·&nbsp; 13 de Maio de 2026
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
