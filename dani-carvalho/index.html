@@ -1,1 +1,986 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Checkpoint - Dani Carvalho</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 
+<style>
+  :root {
+    --brown-dark:   #1a1208;
+    --brown-mid:    #2e1f0a;
+    --brown-warm:   #3d2b10;
+    --gold:         #c9a84c;
+    --gold-light:   #e2c97e;
+    --gold-pale:    #f5ead0;
+    --cream:        #fdf8ef;
+    --cream-mid:    #f7f0e2;
+    --sand:         #e8d9bc;
+    --text-dark:    #1a1208;
+    --text-mid:     #4a3820;
+    --text-light:   #8a7055;
+    --white:        #ffffff;
+    --radius:       6px;
+    --radius-lg:    12px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text-dark);
+    font-size: 14px;
+    line-height: 1.65;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+  }
+
+  h2 {
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--brown-dark);
+    margin-bottom: 18px;
+    line-height: 1.2;
+  }
+
+  h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--brown-dark);
+    margin-bottom: 10px;
+  }
+
+  h4 {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-mid);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+  }
+
+  p {
+    color: var(--text-mid);
+    font-size: 13.5px;
+    line-height: 1.7;
+    margin-bottom: 8px;
+  }
+
+  p:last-child { margin-bottom: 0; }
+
+  .page {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 0 60px;
+  }
+
+  .header {
+    background: var(--brown-dark);
+    padding: 40px 48px 36px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 280px; height: 280px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,168,76,0.12) 0%, transparent 70%);
+  }
+
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    opacity: 0.5;
+  }
+
+  .header-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 24px;
+  }
+
+  .header-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.8;
+    margin-bottom: 10px;
+  }
+
+  .header-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 38px;
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+  }
+
+  .header-name strong {
+    font-weight: 600;
+    color: var(--gold-light);
+  }
+
+  .header-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+  }
+
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .pill-gold {
+    background: rgba(201,168,76,0.18);
+    color: var(--gold-light);
+    border: 1px solid rgba(201,168,76,0.3);
+  }
+
+  .pill-outline {
+    background: transparent;
+    color: rgba(255,255,255,0.5);
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+
+  .pill-fase {
+    background: rgba(201,168,76,0.08);
+    color: var(--gold);
+    border: 1px solid rgba(201,168,76,0.2);
+    font-size: 10.5px;
+  }
+
+  .header-subtitle {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 0.03em;
+    font-weight: 300;
+  }
+
+  .section {
+    padding: 40px 48px 0;
+  }
+
+  .section-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+    display: block;
+  }
+
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, var(--sand), transparent);
+    margin: 32px 48px 0;
+    opacity: 0.7;
+  }
+
+  .spotlight {
+    background: var(--brown-dark);
+    border-left: 3px solid var(--gold);
+    padding: 24px 28px;
+    border-radius: var(--radius);
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .spotlight::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 120px; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(201,168,76,0.04));
+  }
+
+  .spotlight h3 {
+    color: var(--gold-light);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+
+  .spotlight p {
+    color: rgba(255,255,255,0.65);
+    font-size: 13px;
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  .card {
+    background: var(--white);
+    border: 1px solid var(--sand);
+    border-radius: var(--radius-lg);
+    padding: 22px 24px;
+  }
+
+  .card-full {
+    background: var(--white);
+    border: 1px solid var(--sand);
+    border-radius: var(--radius-lg);
+    padding: 22px 24px;
+    margin-bottom: 16px;
+  }
+
+  .card-gold {
+    background: linear-gradient(135deg, var(--brown-dark) 0%, var(--brown-warm) 100%);
+    border: 1px solid rgba(201,168,76,0.25);
+    border-radius: var(--radius-lg);
+    padding: 22px 24px;
+  }
+
+  .card-gold h3 {
+    color: var(--gold-light);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+  }
+
+  .card-gold p {
+    color: rgba(255,255,255,0.6);
+    font-size: 13px;
+  }
+
+  .card-cream {
+    background: var(--cream-mid);
+    border: 1px solid var(--sand);
+    border-radius: var(--radius-lg);
+    padding: 22px 24px;
+  }
+
+  .table-wrap {
+    overflow-x: auto;
+    margin-bottom: 16px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+
+  thead tr {
+    background: var(--brown-dark);
+  }
+
+  thead th {
+    color: var(--gold-light);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 12px 16px;
+    text-align: left;
+  }
+
+  tbody tr {
+    border-bottom: 1px solid var(--sand);
+  }
+
+  tbody tr:last-child { border-bottom: none; }
+
+  tbody tr:nth-child(even) { background: var(--cream-mid); }
+
+  tbody td {
+    padding: 11px 16px;
+    color: var(--text-mid);
+    vertical-align: top;
+  }
+
+  tbody td:first-child {
+    font-weight: 500;
+    color: var(--text-dark);
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 500;
+  }
+
+  .badge-ok {
+    background: #e8f5e9;
+    color: #2e7d32;
+    border: 1px solid #a5d6a7;
+  }
+
+  .badge-ajuste {
+    background: #fff8e1;
+    color: #f57f17;
+    border: 1px solid #ffe082;
+  }
+
+  .badge-pendente {
+    background: #fce4ec;
+    color: #c62828;
+    border: 1px solid #ef9a9a;
+  }
+
+  .badge-novo {
+    background: rgba(201,168,76,0.12);
+    color: var(--brown-warm);
+    border: 1px solid rgba(201,168,76,0.3);
+  }
+
+  .funnel {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: 16px;
+  }
+
+  .funnel-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+  }
+
+  .funnel-line {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .funnel-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--gold);
+    border: 2px solid var(--gold-light);
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+
+  .funnel-connector {
+    width: 2px;
+    flex: 1;
+    min-height: 20px;
+    background: linear-gradient(180deg, var(--gold), var(--sand));
+    opacity: 0.4;
+  }
+
+  .funnel-content {
+    background: var(--white);
+    border: 1px solid var(--sand);
+    border-radius: var(--radius);
+    padding: 14px 18px;
+    margin-left: 14px;
+    margin-bottom: 8px;
+    flex: 1;
+  }
+
+  .funnel-content h4 {
+    font-size: 12px;
+    margin-bottom: 4px;
+    color: var(--brown-dark);
+  }
+
+  .funnel-content p {
+    font-size: 12.5px;
+    margin: 0;
+  }
+
+  .checklist {
+    list-style: none;
+    margin-bottom: 16px;
+  }
+
+  .checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 11px 16px;
+    border-bottom: 1px solid var(--cream-mid);
+    font-size: 13px;
+    color: var(--text-mid);
+    line-height: 1.55;
+  }
+
+  .checklist li:last-child { border-bottom: none; }
+
+  .check-box {
+    width: 18px;
+    height: 18px;
+    border: 1.5px solid var(--sand);
+    border-radius: 4px;
+    flex-shrink: 0;
+    margin-top: 1px;
+    background: var(--white);
+  }
+
+  .check-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--gold);
+    min-width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: rgba(201,168,76,0.1);
+    border: 1px solid rgba(201,168,76,0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .checklist-owner {
+    font-size: 10.5px;
+    color: var(--text-light);
+    display: block;
+    margin-top: 2px;
+    font-style: italic;
+  }
+
+  .tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  .tag {
+    padding: 4px 12px;
+    border-radius: 14px;
+    font-size: 12px;
+    font-weight: 500;
+    background: var(--cream-mid);
+    color: var(--text-mid);
+    border: 1px solid var(--sand);
+  }
+
+  .tag-gold {
+    background: rgba(201,168,76,0.1);
+    color: var(--brown-warm);
+    border: 1px solid rgba(201,168,76,0.3);
+  }
+
+  .quote-block {
+    border-left: 2px solid var(--gold);
+    padding: 12px 20px;
+    background: var(--cream-mid);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    margin-bottom: 14px;
+  }
+
+  .quote-block p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-style: italic;
+    color: var(--brown-dark);
+    font-weight: 400;
+    line-height: 1.5;
+  }
+
+  .footer {
+    margin-top: 56px;
+    border-top: 1px solid var(--sand);
+    padding: 24px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .footer-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--brown-dark);
+    letter-spacing: 0.05em;
+  }
+
+  .footer-brand span { color: var(--gold); }
+
+  .footer-info {
+    font-size: 11px;
+    color: var(--text-light);
+    text-align: right;
+    line-height: 1.6;
+  }
+
+  .footer-info strong {
+    color: var(--text-mid);
+    font-weight: 500;
+  }
+
+  @media print {
+    body { background: white; font-size: 12px; }
+    .page { padding-bottom: 20px; }
+    .header, .spotlight, .card-gold, thead tr { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .section { padding: 28px 40px 0; }
+    .divider { margin: 22px 40px 0; }
+    .footer { padding: 18px 40px; }
+    @page { margin: 14mm 12mm; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-top">
+      <div>
+        <div class="header-brand">High Level · Aceleradora de Negócios</div>
+        <div class="header-name">Checkpoint<br/><strong>Dani Carvalho</strong></div>
+      </div>
+      <div class="header-meta">
+        <span class="pill pill-gold">✦ Checkpoint</span>
+        <span class="pill pill-outline">13 de Maio de 2026</span>
+        <span class="pill pill-fase">Fase: Estruturação</span>
+      </div>
+    </div>
+    <div class="header-subtitle">Etiqueta e Mesa Posta · A Arte da Presença à Mesa &nbsp;·&nbsp; Acompanhamento individual com Eduarda Vasconcelos</div>
+  </header>
+
+
+  <!-- 01 · MOMENTO ATUAL -->
+  <div class="section">
+    <span class="section-label">01 · Leitura do Momento</span>
+    <h2>Onde você está agora</h2>
+
+    <div class="spotlight">
+      <h3>Minha leitura deste checkpoint</h3>
+      <p>Dani, você saiu deste encontro com o produto nomeado, o método estruturado e a jornada do cliente desenhada do início ao fim. O que estava solto foi amarrado: nome, preço, formato, fases e entregáveis. Agora você tem uma mentoria real para vender. O próximo movimento é parar de ajustar e começar a executar: harmonizar a presença digital, ativar o onboarding e levar a primeira cliente pela jornada completa do método 3P.</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <h4>O que você já construiu</h4>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:7px;">
+          <li style="font-size:13px;color:var(--text-mid);padding-left:14px;position:relative;"><span style="position:absolute;left:0;color:var(--gold);">•</span> Produto nomeado: <strong>A Arte da Presença à Mesa</strong></li>
+          <li style="font-size:13px;color:var(--text-mid);padding-left:14px;position:relative;"><span style="position:absolute;left:0;color:var(--gold);">•</span> Método <strong>3P</strong> (Praticidade, Propósito, Presença) definido</li>
+          <li style="font-size:13px;color:var(--text-mid);padding-left:14px;position:relative;"><span style="position:absolute;left:0;color:var(--gold);">•</span> Público refinado: mulheres a partir dos 30 com interesse em mesa posta e etiqueta</li>
+          <li style="font-size:13px;color:var(--text-mid);padding-left:14px;position:relative;"><span style="position:absolute;left:0;color:var(--gold);">•</span> Oferta: R$1.997 por 3 meses de acompanhamento</li>
+          <li style="font-size:13px;color:var(--text-mid);padding-left:14px;position:relative;"><span style="position:absolute;left:0;color:var(--gold);">•</span> Formato híbrido definido: individual + grupo</li>
+          <li style="font-size:13px;color:var(--text-mid);padding-left:14px;position:relative;"><span style="position:absolute;left:0;color:var(--gold);">•</span> Jornada do cliente estruturada em 3 fases + desafio das 8 mesas</li>
+          <li style="font-size:13px;color:var(--text-mid);padding-left:14px;position:relative;"><span style="position:absolute;left:0;color:var(--gold);">•</span> Marca MS Experience criada para o kit de entrega</li>
+        </ul>
+      </div>
+      <div class="card-cream">
+        <h4>Sua fase atual</h4>
+        <p style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:var(--brown-dark);margin-bottom:6px;">Estruturação</p>
+        <p>A base do produto está pronta. Agora é hora de instalar a operação: presença digital harmônica, onboarding funcionando e a jornada sendo entregue com consistência para a primeira cliente.</p>
+        <div class="tag-list" style="margin-top:12px;">
+          <span class="tag tag-gold">Identidade visual</span>
+          <span class="tag tag-gold">Onboarding</span>
+          <span class="tag tag-gold">Ativação</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+
+  <!-- 02 · ANÁLISE DO ENCONTRO -->
+  <div class="section">
+    <span class="section-label">02 · Análise do Encontro</span>
+    <h2>O que analisamos juntas neste checkpoint</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Ponto analisado</th>
+            <th>Situação atual</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Produto e Método (3P)</td>
+            <td>A Arte da Presença à Mesa com método 3P (Praticidade, Propósito, Presença) definido e nomeado. Produto com identidade própria e potencial de ticket elevado.</td>
+            <td><span class="badge badge-ok">✓ Ok</span></td>
+          </tr>
+          <tr>
+            <td>Público-alvo e persona</td>
+            <td>Mulheres a partir dos 30 anos com interesse em mesa posta, etiqueta e comportamento. Dor central identificada: busca por conexão familiar e momentos de diálogo. Perfil ainda precisa de aprofundamento em hábitos e status familiar.</td>
+            <td><span class="badge badge-ajuste">⚡ Aprofundar</span></td>
+          </tr>
+          <tr>
+            <td>Precificação e posicionamento de valor</td>
+            <td>Oferta em R$1.997 por 3 meses. Com as entregas individuais do novo modelo híbrido, o preço anterior (R$997) estava abaixo do valor real. A ancoragem de valor deve vir antes da apresentação do preço.</td>
+            <td><span class="badge badge-ok">✓ Ok</span></td>
+          </tr>
+          <tr>
+            <td>Presença digital e identidade visual</td>
+            <td>Perfil @daniCarvalho_mesa_aposta existe e é focado no nicho, mas ainda sem coesão visual. Brandbook não criado. Capas de vídeo sem padrão. Feed desarmônico.</td>
+            <td><span class="badge badge-pendente">! Pendente</span></td>
+          </tr>
+          <tr>
+            <td>Estratégia de conteúdo e tráfego</td>
+            <td>Reels de teste definidos como principal estratégia de alcance. Pinterest a ser criado como canal de tráfego orgânico para o Instagram. Curadoria de produtos como gancho e monetização paralela via afiliados.</td>
+            <td><span class="badge badge-novo">★ Novo</span></td>
+          </tr>
+          <tr>
+            <td>Modelo de mentoria</td>
+            <td>Migração de mentoria só em grupo para formato híbrido (individual + grupo). Decisão correta: o modelo em grupo fechado não escala sem turmas. O híbrido dá flexibilidade para receber clientes a qualquer momento.</td>
+            <td><span class="badge badge-ok">✓ Ok</span></td>
+          </tr>
+          <tr>
+            <td>Jornada do cliente e onboarding</td>
+            <td>Fluxo completo desenhado: pré-onboarding, onboarding individual, Fase 1, Fase 2, Desafio das 8 Mesas e Fase 3 (híbrida). Processo de pré-onboarding ainda precisa ser configurado e o formulário de diagnóstico montado.</td>
+            <td><span class="badge badge-ajuste">⚡ Ajuste</span></td>
+          </tr>
+          <tr>
+            <td>Desafio das 8 Mesas e Box Experience</td>
+            <td>Conceito de over-delivery via desafio prático definido. Kit MS Experience (livro + vela aromática + home spray + sousplat) estruturado como recompensa. Custo da box ainda precisa ser pesquisado.</td>
+            <td><span class="badge badge-novo">★ Novo</span></td>
+          </tr>
+          <tr>
+            <td>Oportunidades de monetização paralela</td>
+            <td>Curadoria de produtos via afiliados (Shopee, Mercado Livre) identificada como fonte de receita paralela e gancho para a mentoria principal. TikTok Shop mapeado como oportunidade futura de vendas de artigos para casa.</td>
+            <td><span class="badge badge-novo">★ Novo</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+
+  <!-- 03 · PONTOS FORTES -->
+  <div class="section">
+    <span class="section-label">03 · Pontos Fortes</span>
+    <h2>O que está funcionando: quero que você mantenha e amplifique</h2>
+
+    <div class="grid-2">
+      <div class="card-gold">
+        <h3>Você tem um nicho com profundidade real</h3>
+        <p>Mesa posta não é só estética. Você identificou que a dor da sua cliente é conexão familiar, presença e pertencimento. Isso eleva o posicionamento muito além de "como montar uma mesa bonita" e abre espaço para um ticket mais alto e uma relação mais profunda com a cliente.</p>
+      </div>
+      <div class="card-gold">
+        <h3>O método 3P é elegante e vendável</h3>
+        <p>Praticidade, Propósito e Presença: é um método com identidade, fácil de comunicar e de memorizar. Isso diferencia sua mentoria de qualquer conteúdo gratuito sobre mesa posta que existe na internet. Use o 3P como âncora em tudo: na bio, no conteúdo e na venda.</p>
+      </div>
+    </div>
+
+    <div class="card-full">
+      <h4>Seus ativos consolidados</h4>
+      <div class="tag-list">
+        <span class="tag">Produto nomeado com identidade</span>
+        <span class="tag">Método 3P estruturado</span>
+        <span class="tag">Nicho com profundidade emocional</span>
+        <span class="tag">Jornada completa desenhada</span>
+        <span class="tag">Formato híbrido definido</span>
+        <span class="tag tag-gold">MS Experience como marca do kit</span>
+      </div>
+      <p>Você saiu deste encontro com muito mais do que entrou. A estrutura está pronta. O que vai fazer a diferença agora é a consistência na execução: presença visual harmônica, onboarding instalado e a primeira cliente dentro da jornada.</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+
+  <!-- 04 · AJUSTES -->
+  <div class="section">
+    <span class="section-label">04 · Ajustes Necessários</span>
+    <h2>O que preciso que você corrija ou refine</h2>
+
+    <div class="funnel">
+
+      <div class="funnel-step">
+        <div class="funnel-line">
+          <div class="funnel-dot"></div>
+          <div class="funnel-connector"></div>
+        </div>
+        <div class="funnel-content">
+          <h4>Ajuste 1 · Identidade visual: crie o Brandbook antes de postar mais</h4>
+          <p>Seu feed ainda não tem coesão. Antes de criar mais conteúdo, você precisa definir paleta de cores, tipografia e estilo visual no Brandbook. Use o Claude ou o ChatGPT para montar isso com você. Depois, toda imagem, capa e post sai desse manual. Sem o Brandbook, você vai continuar acumulando conteúdo desarmônico.</p>
+        </div>
+      </div>
+
+      <div class="funnel-step">
+        <div class="funnel-line">
+          <div class="funnel-dot"></div>
+          <div class="funnel-connector"></div>
+        </div>
+        <div class="funnel-content">
+          <h4>Ajuste 2 · Bio do Instagram: atualize e adicione o CTA do grupo</h4>
+          <p>Sua bio precisa comunicar em três segundos quem você atende, o que você entrega e qual é o próximo passo. Adicione o link do grupo VIP ou da sua oferta na descrição. Quem chega no seu perfil precisa ter um caminho claro para seguir.</p>
+        </div>
+      </div>
+
+      <div class="funnel-step">
+        <div class="funnel-line">
+          <div class="funnel-dot"></div>
+          <div class="funnel-connector"></div>
+        </div>
+        <div class="funnel-content">
+          <h4>Ajuste 3 · Capas de vídeo: padronize antes de publicar</h4>
+          <p>Capas sem padrão prejudicam o primeiro impacto do perfil e desvalorizam o conteúdo. Use o Canva com as cores do seu Brandbook para criar um template de capa e aplique em todos os vídeos. Isso resolve de uma vez e dá profissionalismo imediato ao perfil.</p>
+        </div>
+      </div>
+
+      <div class="funnel-step">
+        <div class="funnel-line">
+          <div class="funnel-dot"></div>
+          <div class="funnel-connector"></div>
+        </div>
+        <div class="funnel-content">
+          <h4>Ajuste 4 · Persona: aprofunde o perfil da sua cliente ideal</h4>
+          <p>Você sabe que é mulher a partir dos 30, mas precisa ir além: ela tem filhos? É casada? Trabalha fora? Recebe em casa? Quanto mais você entender os hábitos e a rotina dela, mais certeiro será seu conteúdo e mais fácil será a venda. Reserve um momento para detalhar isso antes do próximo encontro.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+
+  <!-- 05 · DECISÕES -->
+  <div class="section">
+    <span class="section-label">05 · Decisões do Encontro</span>
+    <h2>O que decidimos juntas: não está mais em aberto</h2>
+
+    <div class="grid-2">
+      <div class="card">
+        <h4>Decisões estratégicas</h4>
+        <ul class="checklist" style="margin-bottom:0;">
+          <li>
+            <span class="check-number">D</span>
+            <span>Produto: A Arte da Presença à Mesa com método 3P como espinha dorsal de toda a entrega</span>
+          </li>
+          <li>
+            <span class="check-number">D</span>
+            <span>Oferta em R$1.997 por 3 meses. O preço anterior (R$997) estava abaixo do valor real das entregas individuais</span>
+          </li>
+          <li>
+            <span class="check-number">D</span>
+            <span>Formato híbrido adotado: individual no onboarding e fase 1, grupo quinzenal nas fases 2 e 3</span>
+          </li>
+          <li>
+            <span class="check-number">D</span>
+            <span>Curadoria de produtos via afiliados como monetização paralela e gancho de entrada para a mentoria</span>
+          </li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4>Decisões operacionais</h4>
+        <ul class="checklist" style="margin-bottom:0;">
+          <li>
+            <span class="check-number">D</span>
+            <span>Pinterest criado como canal de tráfego orgânico redirecionando para o Instagram e grupos de WhatsApp</span>
+          </li>
+          <li>
+            <span class="check-number">D</span>
+            <span>Reels de teste como estratégia principal de alcance: entregue para não seguidores sem aparecer no feed</span>
+          </li>
+          <li>
+            <span class="check-number">D</span>
+            <span>MS Experience como nome da marca do kit de recompensa do Desafio das 8 Mesas</span>
+          </li>
+          <li>
+            <span class="check-number">D</span>
+            <span>Entregas das fases 1 e 2 podem ser feitas ao vivo, sem alta produção, para gerar acervo de conteúdo</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="quote-block">
+      <p>"Você não precisa de alta produção para começar. Cada entrega ao vivo já é conteúdo, já é acervo, já é prova. O importante é colocar a primeira cliente dentro da jornada e deixar o método falar por você."</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+
+  <!-- 06 · PRIORIDADES -->
+  <div class="section">
+    <span class="section-label">06 · Prioridades Agora</span>
+    <h2>O que eu quero que você priorize agora</h2>
+
+    <div class="grid-2">
+      <div class="spotlight" style="margin-bottom:0;">
+        <h3>Prioridade #1 · Crie o Brandbook e harmonize o perfil</h3>
+        <p>Tudo que vier depois depende disso: capas de vídeo, posts, curadoria, Pinterest. Sem uma identidade visual definida, você vai continuar publicando conteúdo bom em uma embalagem que não faz jus ao que você entrega. Use o Claude para montar o Brandbook esta semana, antes de postar qualquer coisa nova.</p>
+      </div>
+      <div class="card" style="display:flex;flex-direction:column;gap:12px;">
+        <div>
+          <h4>Prioridade #2 · Configure o pré-onboarding</h4>
+          <p>Crie o grupo VIP, a pasta no Drive ou Notion e monte as 5 perguntas do formulário de diagnóstico. Você precisa ter esse fluxo pronto antes de receber a próxima cliente.</p>
+        </div>
+        <div style="border-top:1px solid var(--sand);padding-top:12px;">
+          <h4>Prioridade #3 · Inicie a curadoria de produtos agora</h4>
+          <p>Não espere a mentoria estar perfeita para monetizar. Comece a curadoria de produtos para mesa posta com links de afiliado e divulgue no grupo. É receita paralela e aquecimento de audiência ao mesmo tempo.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+
+  <!-- 07 · CHECKLIST -->
+  <div class="section">
+    <span class="section-label">07 · Checklist de Execução</span>
+    <h2>Seus próximos passos: o que precisa sair essa semana</h2>
+
+    <div class="card-full">
+      <ul class="checklist">
+
+        <li>
+          <div class="check-box"></div>
+          <div>
+            <strong>Atualize a bio do Instagram com CTA claro e link do grupo VIP na descrição</strong>
+            <span class="checklist-owner">Você &nbsp;·&nbsp; Prazo: Imediato. Faça hoje.</span>
+          </div>
+        </li>
+
+        <li>
+          <div class="check-box"></div>
+          <div>
+            <strong>Crie o Brandbook com o Claude: paleta de cores, tipografia e estilo visual para harmonizar todos os posts do feed</strong>
+            <span class="checklist-owner">Você &nbsp;·&nbsp; Prazo: Esta semana. Antes de publicar qualquer coisa nova.</span>
+          </div>
+        </li>
+
+        <li>
+          <div class="check-box"></div>
+          <div>
+            <strong>Crie as capas padronizadas para os vídeos usando as cores do Brandbook no Canva</strong>
+            <span class="checklist-owner">Você &nbsp;·&nbsp; Prazo: Logo após o Brandbook estar pronto.</span>
+          </div>
+        </li>
+
+        <li>
+          <div class="check-box"></div>
+          <div>
+            <strong>Crie a conta no Pinterest e comece a postar fotos de mesas para gerar tráfego orgânico para o Instagram e grupos</strong>
+            <span class="checklist-owner">Você &nbsp;·&nbsp; Prazo: Esta semana.</span>
+          </div>
+        </li>
+
+        <li>
+          <div class="check-box"></div>
+          <div>
+            <strong>Aprofunde o perfil da sua persona: hábitos, rotina, status familiar, frequência com que recebe em casa</strong>
+            <span class="checklist-owner">Você &nbsp;·&nbsp; Prazo: Esta semana. Antes do próximo encontro.</span>
+          </div>
+        </li>
+
+        <li>
+          <div class="check-box"></div>
+          <div>
+            <strong>Inicie a curadoria de produtos de mesa posta com links de afiliado (Shopee e Mercado Livre) e divulgue imediatamente</strong>
+            <span class="checklist-owner">Você &nbsp;·&nbsp; Prazo: Esta semana. Não espere a mentoria estar pronta.</span>
+          </div>
+        </li>
+
+        <li>
+          <div class="check-box"></div>
+          <div>
+            <strong>Configure o pré-onboarding: crie o grupo VIP, a pasta no Drive ou Notion e envie o contrato para a próxima cliente</strong>
+            <span class="checklist-owner">Você &nbsp;·&nbsp; Prazo: Antes de receber a próxima cliente.</span>
+          </div>
+        </li>
+
+        <li>
+          <div class="check-box"></div>
+          <div>
+            <strong>Selecione pelo menos 5 perguntas estratégicas para o formulário de diagnóstico do onboarding</strong>
+            <span class="checklist-owner">Você &nbsp;·&nbsp; Prazo: Antes da próxima reunião de onboarding.</span>
+          </div>
+        </li>
+
+        <li>
+          <div class="check-box"></div>
+          <div>
+            <strong>Pesquise o custo da Box Experience (livro + vela aromática + home spray + kit de sousplat) para calcular o custo total do Desafio das 8 Mesas</strong>
+            <span class="checklist-owner">Você &nbsp;·&nbsp; Prazo: Esta semana.</span>
+          </div>
+        </li>
+
+        <li>
+          <div class="check-box"></div>
+          <div>
+            <strong>Compile e me manda o documento com todas as fases e entregáveis que você já tem estruturados</strong>
+            <span class="checklist-owner">Você &nbsp;·&nbsp; Prazo: Assim que tiver. Preciso disso para montar a estrutura final.</span>
+          </div>
+        </li>
+
+        <li>
+          <div class="check-box"></div>
+          <div>
+            <strong>Monto e envio o documento completo com a estrutura de aulas, jornada e sugestões de entrega para você</strong>
+            <span class="checklist-owner">Eduarda &nbsp;·&nbsp; Prazo: Até o final do dia do nosso encontro.</span>
+          </div>
+        </li>
+
+        <li>
+          <div class="check-box"></div>
+          <div>
+            <strong>Te envio o modelo de contrato para você usar com suas clientes</strong>
+            <span class="checklist-owner">Eduarda &nbsp;·&nbsp; Prazo: Em breve.</span>
+          </div>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-brand">High <span>Level</span></div>
+    <div class="footer-info">
+      <strong>Eduarda Vasconcelos</strong><br/>
+      Aceleradora de Negócios &nbsp;·&nbsp; 13 de Maio de 2026
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
