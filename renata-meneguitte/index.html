@@ -1,1 +1,855 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Checkpoint - Renata Meneguitte</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 
+<style>
+  :root {
+    --brown-dark:   #1a1208;
+    --brown-mid:    #2e1f0a;
+    --brown-warm:   #3d2b10;
+    --gold:         #c9a84c;
+    --gold-light:   #e2c97e;
+    --gold-pale:    #f5ead0;
+    --cream:        #fdf8ef;
+    --cream-mid:    #f7f0e2;
+    --sand:         #e8d9bc;
+    --text-dark:    #1a1208;
+    --text-mid:     #4a3820;
+    --text-light:   #8a7055;
+    --white:        #ffffff;
+    --radius:       6px;
+    --radius-lg:    12px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text-dark);
+    font-size: 14px;
+    line-height: 1.65;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+  }
+
+  h2 {
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--brown-dark);
+    margin-bottom: 18px;
+    line-height: 1.2;
+  }
+
+  h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--brown-dark);
+    margin-bottom: 10px;
+  }
+
+  h4 {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-mid);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+  }
+
+  p {
+    color: var(--text-mid);
+    font-size: 13.5px;
+    line-height: 1.7;
+    margin-bottom: 8px;
+  }
+
+  p:last-child { margin-bottom: 0; }
+
+  .page {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 0 60px;
+  }
+
+  .header {
+    background: var(--brown-dark);
+    padding: 40px 48px 36px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 280px; height: 280px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,168,76,0.12) 0%, transparent 70%);
+  }
+
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    opacity: 0.5;
+  }
+
+  .header-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 24px;
+  }
+
+  .header-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.8;
+    margin-bottom: 10px;
+  }
+
+  .header-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 38px;
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+  }
+
+  .header-name strong {
+    font-weight: 600;
+    color: var(--gold-light);
+  }
+
+  .header-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+  }
+
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .pill-gold {
+    background: rgba(201,168,76,0.18);
+    color: var(--gold-light);
+    border: 1px solid rgba(201,168,76,0.3);
+  }
+
+  .pill-outline {
+    background: transparent;
+    color: rgba(255,255,255,0.5);
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+
+  .pill-fase {
+    background: rgba(201,168,76,0.08);
+    color: var(--gold);
+    border: 1px solid rgba(201,168,76,0.2);
+    font-size: 10.5px;
+  }
+
+  .header-subtitle {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 0.03em;
+    font-weight: 300;
+  }
+
+  .section {
+    padding: 40px 48px 0;
+  }
+
+  .section-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+    display: block;
+  }
+
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, var(--sand), transparent);
+    margin: 32px 48px 0;
+    opacity: 0.7;
+  }
+
+  .spotlight {
+    background: var(--brown-dark);
+    border-left: 3px solid var(--gold);
+    padding: 24px 28px;
+    border-radius: var(--radius);
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .spotlight::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 120px; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(201,168,76,0.04));
+  }
+
+  .spotlight h3 {
+    color: var(--gold-light);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+
+  .spotlight p {
+    color: rgba(255,255,255,0.65);
+    font-size: 13px;
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  .card {
+    background: var(--white);
+    border: 1px solid var(--sand);
+    border-radius: var(--radius-lg);
+    padding: 22px 24px;
+  }
+
+  .card-full {
+    background: var(--white);
+    border: 1px solid var(--sand);
+    border-radius: var(--radius-lg);
+    padding: 22px 24px;
+    margin-bottom: 16px;
+  }
+
+  .card-gold {
+    background: linear-gradient(135deg, var(--brown-dark) 0%, var(--brown-warm) 100%);
+    border: 1px solid rgba(201,168,76,0.25);
+    border-radius: var(--radius-lg);
+    padding: 22px 24px;
+  }
+
+  .card-gold h3 {
+    color: var(--gold-light);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+  }
+
+  .card-gold p {
+    color: rgba(255,255,255,0.6);
+    font-size: 13px;
+  }
+
+  .card-cream {
+    background: var(--cream-mid);
+    border: 1px solid var(--sand);
+    border-radius: var(--radius-lg);
+    padding: 22px 24px;
+  }
+
+  .table-wrap {
+    overflow-x: auto;
+    margin-bottom: 16px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+
+  thead tr { background: var(--brown-dark); }
+
+  thead th {
+    color: var(--gold-light);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 12px 16px;
+    text-align: left;
+  }
+
+  tbody tr { border-bottom: 1px solid var(--sand); }
+  tbody tr:last-child { border-bottom: none; }
+  tbody tr:nth-child(even) { background: var(--cream-mid); }
+
+  tbody td {
+    padding: 11px 16px;
+    color: var(--text-mid);
+    vertical-align: top;
+  }
+
+  tbody td:first-child {
+    font-weight: 500;
+    color: var(--text-dark);
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 500;
+  }
+
+  .badge-ok      { background: #e8f5e9; color: #2e7d32; border: 1px solid #a5d6a7; }
+  .badge-ajuste  { background: #fff8e1; color: #f57f17; border: 1px solid #ffe082; }
+  .badge-pendente{ background: #fce4ec; color: #c62828; border: 1px solid #ef9a9a; }
+  .badge-novo    { background: rgba(201,168,76,0.12); color: var(--brown-warm); border: 1px solid rgba(201,168,76,0.3); }
+
+  .funnel { display: flex; flex-direction: column; gap: 0; margin-bottom: 16px; }
+
+  .funnel-step { display: flex; align-items: flex-start; gap: 0; }
+
+  .funnel-line { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
+
+  .funnel-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--gold);
+    border: 2px solid var(--gold-light);
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+
+  .funnel-connector {
+    width: 2px; flex: 1; min-height: 20px;
+    background: linear-gradient(180deg, var(--gold), var(--sand));
+    opacity: 0.4;
+  }
+
+  .funnel-content {
+    background: var(--white);
+    border: 1px solid var(--sand);
+    border-radius: var(--radius);
+    padding: 14px 18px;
+    margin-left: 14px;
+    margin-bottom: 8px;
+    flex: 1;
+  }
+
+  .funnel-content h4 { font-size: 12px; margin-bottom: 4px; color: var(--brown-dark); }
+  .funnel-content p  { font-size: 12.5px; margin: 0; }
+
+  .checklist { list-style: none; margin-bottom: 16px; }
+
+  .checklist li {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 11px 16px;
+    border-bottom: 1px solid var(--cream-mid);
+    font-size: 13px; color: var(--text-mid); line-height: 1.55;
+  }
+
+  .checklist li:last-child { border-bottom: none; }
+
+  .check-box {
+    width: 18px; height: 18px;
+    border: 1.5px solid var(--sand);
+    border-radius: 4px;
+    flex-shrink: 0; margin-top: 1px;
+    background: var(--white);
+  }
+
+  .check-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 11px; font-weight: 700; color: var(--gold);
+    min-width: 20px; height: 20px; border-radius: 50%;
+    background: rgba(201,168,76,0.1);
+    border: 1px solid rgba(201,168,76,0.25);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 1px;
+  }
+
+  .checklist-owner {
+    font-size: 10.5px; color: var(--text-light);
+    display: block; margin-top: 2px; font-style: italic;
+  }
+
+  .tag-list { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+
+  .tag {
+    padding: 4px 12px; border-radius: 14px;
+    font-size: 12px; font-weight: 500;
+    background: var(--cream-mid); color: var(--text-mid); border: 1px solid var(--sand);
+  }
+
+  .tag-gold {
+    background: rgba(201,168,76,0.1); color: var(--brown-warm);
+    border: 1px solid rgba(201,168,76,0.3);
+  }
+
+  .quote-block {
+    border-left: 2px solid var(--gold);
+    padding: 12px 20px;
+    background: var(--cream-mid);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    margin-bottom: 14px;
+  }
+
+  .quote-block p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px; font-style: italic;
+    color: var(--brown-dark); font-weight: 400; line-height: 1.5;
+  }
+
+  .footer {
+    margin-top: 56px;
+    border-top: 1px solid var(--sand);
+    padding: 24px 48px;
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  }
+
+  .footer-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px; font-weight: 600;
+    color: var(--brown-dark); letter-spacing: 0.05em;
+  }
+
+  .footer-brand span { color: var(--gold); }
+
+  .footer-info {
+    font-size: 11px; color: var(--text-light);
+    text-align: right; line-height: 1.6;
+  }
+
+  .footer-info strong { color: var(--text-mid); font-weight: 500; }
+
+  @media print {
+    body { background: white; font-size: 12px; }
+    .page { padding-bottom: 20px; }
+    .header, .spotlight, .card-gold, thead tr { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .section { padding: 28px 40px 0; }
+    .divider { margin: 22px 40px 0; }
+    .footer { padding: 18px 40px; }
+    @page { margin: 14mm 12mm; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-top">
+      <div>
+        <div class="header-brand">High Level · Aceleradora de Negócios</div>
+        <div class="header-name">Checkpoint<br/><strong>Renata Meneguitte</strong></div>
+      </div>
+      <div class="header-meta">
+        <span class="pill pill-gold">✦ Checkpoint</span>
+        <span class="pill pill-outline">14 de Maio de 2026</span>
+        <span class="pill pill-fase">Fase: Estruturação do Produto</span>
+      </div>
+    </div>
+    <div class="header-subtitle">Mentoria de Vendas · Atendimento em Alto Valor &nbsp;·&nbsp; Acompanhamento individual com Eduarda Vasconcelos</div>
+  </header>
+
+
+  <!-- 01 · MOMENTO ATUAL -->
+  <div class="section">
+    <span class="section-label">01 · Leitura do Momento</span>
+    <h2>Onde você está agora</h2>
+
+    <div class="spotlight">
+      <h3>Minha leitura deste checkpoint</h3>
+      <p>Renata, você chegou neste encontro com uma ideia poderosa e saiu com um produto com direção real. Mais de 10 anos de experiência em vendas, passagem por empresas como Mary Kay, Localiza e Americanas, e um olhar clínico para o que trava a conversão no atendimento. Tudo isso está à disposição de um modelo que ainda precisa ser finalizado. O que fizemos aqui foi clarear o caminho: menos presencial obrigatório, mais autonomia, mais escala. Agora o próximo passo é você sentar, definir a estrutura final do produto e construir a partir do que decidimos juntas.</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <h4>O que você já tem</h4>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:7px;">
+          <li style="font-size:13px;color:var(--text-mid);padding-left:14px;position:relative;"><span style="position:absolute;left:0;color:var(--gold);">•</span> Mais de <strong>10 anos de experiência</strong> em vendas em diferentes mercados</li>
+          <li style="font-size:13px;color:var(--text-mid);padding-left:14px;position:relative;"><span style="position:absolute;left:0;color:var(--gold);">•</span> Autoridade com produtos tangíveis e intangíveis</li>
+          <li style="font-size:13px;color:var(--text-mid);padding-left:14px;position:relative;"><span style="position:absolute;left:0;color:var(--gold);">•</span> Nicho definido: <strong>mulheres empreendedoras em clínicas e salões</strong></li>
+          <li style="font-size:13px;color:var(--text-mid);padding-left:14px;position:relative;"><span style="position:absolute;left:0;color:var(--gold);">•</span> Promessa ajustada: <strong>"Transforme seu atendimento em vendas de alto valor"</strong></li>
+          <li style="font-size:13px;color:var(--text-mid);padding-left:14px;position:relative;"><span style="position:absolute;left:0;color:var(--gold);">•</span> Modelo remoto como base da entrega definido</li>
+          <li style="font-size:13px;color:var(--text-mid);padding-left:14px;position:relative;"><span style="position:absolute;left:0;color:var(--gold);">•</span> Duração de 3 meses e faixa de preço entre R$5.000 e R$8.000 estabelecidos</li>
+        </ul>
+      </div>
+      <div class="card-cream">
+        <h4>Sua fase atual</h4>
+        <p style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:var(--brown-dark);margin-bottom:6px;">Estruturação do Produto</p>
+        <p>A direção está clara. O que falta é transformar tudo que discutimos em uma estrutura formal: módulos, entregáveis, bio, brandbook e precificação definida. Estendi seu acompanhamento por mais 2 semanas justamente para garantir que essa etapa seja concluída com calma e consistência.</p>
+        <div class="tag-list" style="margin-top:12px;">
+          <span class="tag tag-gold">Produto</span>
+          <span class="tag tag-gold">Posicionamento</span>
+          <span class="tag tag-gold">Identidade visual</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+
+  <!-- 02 · ANÁLISE DO ENCONTRO -->
+  <div class="section">
+    <span class="section-label">02 · Análise do Encontro</span>
+    <h2>O que analisamos juntas neste checkpoint</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Ponto analisado</th>
+            <th>Situação atual</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Foco e promessa da mentoria</td>
+            <td>Ajuste feito: saímos de "atendimento presencial" para "transforme seu atendimento em vendas de alto valor". Essa mudança abre o escopo para varejo e serviços sem exigir presença física obrigatória.</td>
+            <td><span class="badge badge-ok">✓ Ajustado</span></td>
+          </tr>
+          <tr>
+            <td>Nicho de atuação</td>
+            <td>Foco em mulheres empreendedoras em clínicas e salões de beleza. Validado como nicho promissor: menos deslocamento que varejo, demanda real por scripts e treinamento de secretárias, cliente que conecta Instagram e atendimento.</td>
+            <td><span class="badge badge-ok">✓ Ok</span></td>
+          </tr>
+          <tr>
+            <td>Modelo de entrega</td>
+            <td>Remoto como base, com presença física pontual e opcional como módulo específico. Decisão coerente com a rotina de mãe de três filhos e a necessidade de autonomia e escala.</td>
+            <td><span class="badge badge-ok">✓ Ok</span></td>
+          </tr>
+          <tr>
+            <td>Estrutura do produto</td>
+            <td>Entregáveis revisados: diagnóstico completo, roteiros personalizados e suporte contínuo. Estrutura adequada, mas ainda precisa ser formalizada em módulos com sequência clara e materiais definidos.</td>
+            <td><span class="badge badge-ajuste">⚡ Formalizar</span></td>
+          </tr>
+          <tr>
+            <td>Duração e precificação</td>
+            <td>Ciclo de 1 mês descartado por ser insuficiente para absorção e aplicação do conteúdo. Definido: 3 meses de acompanhamento com faixa entre R$5.000 e R$8.000. Valor final a ser definido com base nos entregáveis.</td>
+            <td><span class="badge badge-ok">✓ Ok</span></td>
+          </tr>
+          <tr>
+            <td>Posicionamento e bio</td>
+            <td>Bio ainda não foi revisada ou criada com o novo posicionamento. Documento com sugestões de bio, posicionamento e precificação a ser entregue por mim.</td>
+            <td><span class="badge badge-pendente">! Pendente</span></td>
+          </tr>
+          <tr>
+            <td>Identidade visual e brandbook</td>
+            <td>Brandbook ainda não existe. Identidade visual desarmônica compromete a percepção de autoridade antes mesmo da venda. Precisa ser criado para garantir coesão em todos os pontos de contato da marca.</td>
+            <td><span class="badge badge-pendente">! Pendente</span></td>
+          </tr>
+          <tr>
+            <td>Estratégia de atração e fechamento</td>
+            <td>Definido: atração via Instagram, fechamento via WhatsApp ou chamadas. Presencial apenas como módulo opcional dentro da entrega. Diagnóstico prévio via formulário aplicado após agendamento, sem sobrecarregar quem ainda está buscando informações.</td>
+            <td><span class="badge badge-novo">★ Novo</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+
+  <!-- 03 · PONTOS FORTES -->
+  <div class="section">
+    <span class="section-label">03 · Pontos Fortes</span>
+    <h2>O que está funcionando: quero que você mantenha e amplifique</h2>
+
+    <div class="grid-2">
+      <div class="card-gold">
+        <h3>Sua experiência é a sua maior autoridade</h3>
+        <p>Mais de 10 anos em vendas, com passagem por Mary Kay, Localiza e Americanas, cobrindo tanto produtos tangíveis quanto intangíveis. Isso não é currículo. Isso é material de posicionamento. Use essa trajetória para se diferenciar de qualquer concorrente que só conhece um tipo de venda.</p>
+      </div>
+      <div class="card-gold">
+        <h3>Você identificou um nicho com dor real e urgente</h3>
+        <p>Mulheres que tocam salões e clínicas enfrentam todos os dias o medo de oferecer serviços mais caros, a dependência de indicações e a dificuldade de conectar Instagram com atendimento que converte. Essas dores são o coração do seu produto, e você sabe resolvê-las.</p>
+      </div>
+    </div>
+
+    <div class="card-full">
+      <h4>Seus ativos consolidados neste encontro</h4>
+      <div class="tag-list">
+        <span class="tag">+10 anos em vendas</span>
+        <span class="tag">Experiência em grandes empresas</span>
+        <span class="tag">Nicho validado</span>
+        <span class="tag">Promessa ajustada e escalável</span>
+        <span class="tag">Modelo remoto definido</span>
+        <span class="tag tag-gold">Precificação de alto valor estabelecida</span>
+      </div>
+      <p>Você tem autoridade de sobra para cobrar entre R$5.000 e R$8.000 por uma mentoria de 3 meses. O que precisa agora é que essa autoridade apareça com clareza na sua presença digital e na estrutura do produto.</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+
+  <!-- 04 · AJUSTES -->
+  <div class="section">
+    <span class="section-label">04 · Ajustes Necessários</span>
+    <h2>O que preciso que você corrija ou refine</h2>
+
+    <div class="funnel">
+
+      <div class="funnel-step">
+        <div class="funnel-line">
+          <div class="funnel-dot"></div>
+          <div class="funnel-connector"></div>
+        </div>
+        <div class="funnel-content">
+          <h4>Ajuste 1 · Promessa: retire "presencial" de qualquer comunicação da mentoria</h4>
+          <p>O atendimento presencial não pode ser o centro da oferta porque ele limita seu modelo, sua escala e sua rotina. A nova promessa, "Transforme seu atendimento em vendas de alto valor", funciona para varejo, clínicas e salões, online e offline. Revise qualquer texto, bio ou conversa que ainda mencione presencial como obrigação.</p>
+        </div>
+      </div>
+
+      <div class="funnel-step">
+        <div class="funnel-line">
+          <div class="funnel-dot"></div>
+          <div class="funnel-connector"></div>
+        </div>
+        <div class="funnel-content">
+          <h4>Ajuste 2 · Produto: formalize a estrutura em módulos com entregáveis claros</h4>
+          <p>Você sabe o que vai entregar, mas isso ainda não está formalizado em uma sequência com nomes, ordem e materiais definidos. Preciso que você sente e estruture isso antes do nosso próximo contato. Quais são as fases? O que a cliente recebe em cada uma? Qual é a sequência de evolução? Isso também vai definir o preço final entre R$5.000 e R$8.000.</p>
+        </div>
+      </div>
+
+      <div class="funnel-step">
+        <div class="funnel-line">
+          <div class="funnel-dot"></div>
+          <div class="funnel-connector"></div>
+        </div>
+        <div class="funnel-content">
+          <h4>Ajuste 3 · Brandbook: crie antes de qualquer postagem nova</h4>
+          <p>Sem identidade visual definida, sua presença digital não vai transmitir a autoridade que a sua experiência merece. O brandbook não precisa ser perfeito para ser funcional. Defina paleta de cores, tipografia e um estilo visual que represente você. A partir daí, cada post, capa e material vai ter coesão.</p>
+        </div>
+      </div>
+
+      <div class="funnel-step">
+        <div class="funnel-line">
+          <div class="funnel-dot"></div>
+        </div>
+        <div class="funnel-content">
+          <h4>Ajuste 4 · Diagnóstico: aplique o formulário após o agendamento, não antes</h4>
+          <p>Formulários de diagnóstico têm momento certo. Quem ainda está buscando informações pelo WhatsApp não pode ser sobrecarregado com perguntas. O formulário entra depois que a pessoa agendou, para personalizar o atendimento e poupar seu tempo na call. Esse ajuste muda a qualidade da sua entrega sem complicar a entrada do cliente.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+
+  <!-- 05 · DECISÕES -->
+  <div class="section">
+    <span class="section-label">05 · Decisões do Encontro</span>
+    <h2>O que decidimos juntas: não está mais em aberto</h2>
+
+    <div class="grid-2">
+      <div class="card">
+        <h4>Decisões estratégicas</h4>
+        <ul class="checklist" style="margin-bottom:0;">
+          <li>
+            <span class="check-number">D</span>
+            <span>Promessa da mentoria: "Transforme seu atendimento em vendas de alto valor". O termo "presencial" sai de toda a comunicação principal</span>
+          </li>
+          <li>
+            <span class="check-number">D</span>
+            <span>Nicho principal: mulheres empreendedoras em clínicas e salões de beleza que precisam conectar Instagram e atendimento que converte</span>
+          </li>
+          <li>
+            <span class="check-number">D</span>
+            <span>Precificação entre R$5.000 e R$8.000 por 3 meses, condizente com o nível de suporte e profundidade da entrega</span>
+          </li>
+          <li>
+            <span class="check-number">D</span>
+            <span>Mentoria de 1 mês descartada: tempo insuficiente para absorção, aplicação e resultado real</span>
+          </li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4>Decisões operacionais</h4>
+        <ul class="checklist" style="margin-bottom:0;">
+          <li>
+            <span class="check-number">D</span>
+            <span>Modelo predominantemente remoto. Presença física pontual e opcional como módulo específico dentro da entrega</span>
+          </li>
+          <li>
+            <span class="check-number">D</span>
+            <span>Atração via Instagram, fechamento via WhatsApp ou chamadas de vídeo</span>
+          </li>
+          <li>
+            <span class="check-number">D</span>
+            <span>Diagnóstico via formulário aplicado após agendamento, não na primeira abordagem</span>
+          </li>
+          <li>
+            <span class="check-number">D</span>
+            <span>Acompanhamento do programa estendido por mais 2 semanas para garantir a conclusão da estruturação do produto</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="quote-block">
+      <p>"Você não precisa escolher entre varejão e clínica. Sua experiência te dá autoridade nos dois. O que você precisa agora é de um posicionamento que funcione remotamente e te dê escala, sem abrir mão da profundidade que você entrega."</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+
+  <!-- 06 · PRIORIDADES -->
+  <div class="section">
+    <span class="section-label">06 · Prioridades Agora</span>
+    <h2>O que eu quero que você priorize agora</h2>
+
+    <div class="grid-2">
+      <div class="spotlight" style="margin-bottom:0;">
+        <h3>Prioridade #1 · Estruture o produto de uma vez</h3>
+        <p>Esse é o centro de tudo. Sem o produto estruturado em fases, com entregáveis claros e sequência definida, nada mais avança. Não precisa ser perfeito. Precisa existir. Sente, coloque no papel o que você vai entregar em cada etapa dos 3 meses e me manda. A partir daí eu consigo te ajudar a afinar o preço e o posicionamento.</p>
+      </div>
+      <div class="card" style="display:flex;flex-direction:column;gap:12px;">
+        <div>
+          <h4>Prioridade #2 · Crie o Brandbook</h4>
+          <p>Antes de qualquer novo post ou conteúdo, você precisa de uma identidade visual que comunique autoridade. Defina paleta, fonte e estilo. Use o Claude ou o ChatGPT para te ajudar nisso.</p>
+        </div>
+        <div style="border-top:1px solid var(--sand);padding-top:12px;">
+          <h4>Prioridade #3 · Revise a bio com o novo posicionamento</h4>
+          <p>Quando eu te mandar o documento com sugestões, aplique as mudanças na bio imediatamente. Quem chega no seu perfil precisa entender em segundos o que você faz e para quem.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+
+  <!-- 07 · CHECKLIST -->
+  <div class="section">
+    <span class="section-label">07 · Checklist de Execução</span>
+    <h2>Seus próximos passos: o que precisa sair essa semana</h2>
+
+    <div class="card-full">
+      <ul class="checklist">
+
+        <li>
+          <div class="check-box"></div>
+          <div>
+            <strong>Retire "atendimento presencial" de toda a sua comunicação atual. Bio, stories, textos de venda e conversas</strong>
+            <span class="checklist-owner">Você &nbsp;·&nbsp; Prazo: Imediato. Faça hoje.</span>
+          </div>
+        </li>
+
+        <li>
+          <div class="check-box"></div>
+          <div>
+            <strong>Defina a estrutura final do produto: fases, módulos, o que a cliente recebe em cada etapa dos 3 meses</strong>
+            <span class="checklist-owner">Você &nbsp;·&nbsp; Prazo: Esta semana. É a tarefa mais importante do momento.</span>
+          </div>
+        </li>
+
+        <li>
+          <div class="check-box"></div>
+          <div>
+            <strong>Me mande a estrutura do produto assim que estiver esboçada, mesmo que não esteja finalizada</strong>
+            <span class="checklist-owner">Você &nbsp;·&nbsp; Prazo: Assim que tiver. Vou usar para montar o documento de apoio.</span>
+          </div>
+        </li>
+
+        <li>
+          <div class="check-box"></div>
+          <div>
+            <strong>Crie o Brandbook: paleta de cores, tipografia e estilo visual que represente sua marca e autoridade</strong>
+            <span class="checklist-owner">Você &nbsp;·&nbsp; Prazo: Esta semana. Antes de qualquer nova postagem.</span>
+          </div>
+        </li>
+
+        <li>
+          <div class="check-box"></div>
+          <div>
+            <strong>Aplique as sugestões de bio e posicionamento quando eu te mandar o documento, atualizando o perfil imediatamente</strong>
+            <span class="checklist-owner">Você &nbsp;·&nbsp; Prazo: Logo que receber o documento.</span>
+          </div>
+        </li>
+
+        <li>
+          <div class="check-box"></div>
+          <div>
+            <strong>Monte o formulário de diagnóstico para ser enviado após o agendamento da chamada</strong>
+            <span class="checklist-owner">Você &nbsp;·&nbsp; Prazo: Antes de receber a próxima potencial cliente.</span>
+          </div>
+        </li>
+
+        <li>
+          <div class="check-box"></div>
+          <div>
+            <strong>Monto e te envio o documento com sugestões de bio, posicionamento e precificação</strong>
+            <span class="checklist-owner">Eduarda &nbsp;·&nbsp; Prazo: Até o dia seguinte ao nosso encontro.</span>
+          </div>
+        </li>
+
+        <li>
+          <div class="check-box"></div>
+          <div>
+            <strong>Estendo o acompanhamento individual por mais 2 semanas para garantir a conclusão da estruturação</strong>
+            <span class="checklist-owner">Eduarda &nbsp;·&nbsp; Prazo: Já está sendo aplicado.</span>
+          </div>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-brand">High <span>Level</span></div>
+    <div class="footer-info">
+      <strong>Eduarda Vasconcelos</strong><br/>
+      Aceleradora de Negócios &nbsp;·&nbsp; 14 de Maio de 2026
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
